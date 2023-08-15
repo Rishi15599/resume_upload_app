@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 const Form1 = () => {
@@ -10,64 +11,59 @@ const Form1 = () => {
   const [gender, setGender] = useState('')
   const [maritalStatus, setMaritalStatus] = useState('')
   const [age, setAge] = useState('')
+  const navigate = useNavigate();
 
   function validateForm(e) {
     e.preventDefault();
-    if (firstName.trim() == "") {
-      setFirstName(document.getElementById('firstnameErr').innerHTML = "First Name is required")
+    if (firstName.trim() === "") {
+      document.getElementById('firstnameErr').innerHTML = "First Name is required"
     } else {
-      setFirstName(document.getElementById('firstnameErr').innerHTML = "")
       console.log(firstName)
     }
 
-    if (lastName.trim() == "") {
-      setLastName(document.getElementById('lastNameErr').innerHTML = "Last Name is required")
+    if (lastName.trim() === "") {
+      document.getElementById('lastNameErr').innerHTML = "Last Name is required"
     } else {
-      setLastName(document.getElementById('lastNameErr').innerHTML = "")
       console.log(lastName)
     }
 
-    if (photo.trim() == "") {
-      setPhoto(document.getElementById('photoErr').innerHTML = "Profile image is required")
+    if (photo.trim() === "") {
+      document.getElementById('photoErr').innerHTML = "Profile image is required"
     } else {
-      setPhoto(document.getElementById('photoErr').innerHTML = "")
       console.log(photo)
     }
 
-    if (mobileNumber.trim() == "") {
-      setMobileNumber(document.getElementById('mobileNumberErr').innerHTML = "Mobile Number is required")
+    if (mobileNumber.trim() === "") {
+      document.getElementById('mobileNumberErr').innerHTML = "Mobile Number is required"
     } else {
-      setMobileNumber(document.getElementById('mobileNumberErr').innerHTML = "")
       console.log(mobileNumber)
     }
 
-    if (email.trim() == "") {
-      setEmail(document.getElementById('setEmailErr').innerHTML = "Email Address is required")
+    if (email.trim() === "") {
+      document.getElementById('setEmailErr').innerHTML = "Email Address is required"
     } else {
-      setEmail(document.getElementById('setEmailErr').innerHTML = "")
       console.log(email)
     }
 
-    if (gender.trim() == "") {
-      setGender(document.getElementById('genderErr').innerHTML = "Gender is required")
+    if (gender.trim() === "") {
+      document.getElementById('genderErr').innerHTML = "Gender is required"
     } else {
-      setGender(document.getElementById('genderErr').innerHTML = "")
       console.log(gender)
     }
 
-    if (maritalStatus.trim() == "") {
-      setMaritalStatus(document.getElementById('maritalStatusErr').innerHTML = "Marital Status is required")
+    if (maritalStatus.trim() === "") {
+      document.getElementById('maritalStatusErr').innerHTML = "Marital Status is required"
     } else {
-      setMaritalStatus(document.getElementById('maritalStatusErr').innerHTML = "")
       console.log(maritalStatus)
     }
 
-    if (age.trim() == "") {
-      setAge(document.getElementById('ageErr').innerHTML = "age is required")
+    if (age.trim() === "") {
+      document.getElementById('ageErr').innerHTML = "age is required"
     } else {
-      setAge(document.getElementById('ageErr').innerHTML = "")
+      navigate("/form2")
       console.log(age)
     }
+
   }
 
   return (

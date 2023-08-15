@@ -1,9 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Form6 = () => {
+    const [SelectYear, setSelectYear] = useState('')
+    const [SelectMonth, setSelectMonth] = useState('')
+    const [CompanyName, setCompanyName] = useState('')
+    const [JobTitle, setJobTitle] = useState('')
+    const [SelectMonth2, setSelectMonth2] = useState('')
+    const [SelectYear2, setSelectYear2] = useState('')
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/form5")
+    }
+
+    function validateForm(e) {
+        e.preventDefault();
+        if (SelectYear.trim() === "") {
+            document.getElementById('SelectYearErr').innerHTML = "Qualification is required"
+        } else {
+            console.log(SelectYear)
+        }
+
+        if (SelectMonth.trim() === "") {
+            document.getElementById('SelectMonthErr').innerHTML = "Experience Month is required"
+        } else {
+            console.log(SelectMonth)
+            navigate("/form7")
+        }
+
+        if (CompanyName.trim() === "") {
+        } else {
+            console.log(CompanyName)
+        }
+
+        if (JobTitle.trim() === "") {
+        } else {
+            console.log(JobTitle)
+        }
+
+        if (SelectMonth2.trim() === "") {
+        } else {
+            console.log(SelectMonth2)
+        }
+
+        if (SelectYear2.trim() === "") {
+        } else {
+            console.log(SelectYear2)
+        }
+    }
     return (
         <div className="contner">
-            <div style={{color:'#630460'}} className="contner-top">
+            <div style={{ color: '#630460' }} className="contner-top">
                 <div className="form-name">
                     Experience
                 </div>
@@ -12,7 +60,7 @@ const Form6 = () => {
                 </div>
             </div>
             <div className="main-form-div">
-                <form action=""><br /><br />
+                <form onSubmit={validateForm} action=""><br /><br />
 
                     <div className='name'>
                         <span className='name-lable'>
@@ -21,7 +69,7 @@ const Form6 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' name="" id="SelectYear">
+                                <select className='input-feild' onChange={(e) => setSelectYear(e.target.value)} >
                                     <option value="">Select Year</option>
                                     <option name="0" value="0">0</option>
                                     <option name="1" value="1">1</option>
@@ -76,13 +124,13 @@ const Form6 = () => {
                                     <option name="50" value="50">50</option>
                                 </select>
                             </div>
-                            <div className='required'>
-                                Qualification is required
+                            <div id='SelectYearErr' className='required'>
+                                {/* Qualification is required */}
                             </div>
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' id="SelectMonth" >
+                                <select className='input-feild' onChange={(e) => setSelectMonth(e.target.value)}  >
                                     <option value="">Select Month</option>
                                     <option name="0" value="0">0</option>
                                     <option name="1" value="1">1</option>
@@ -98,8 +146,8 @@ const Form6 = () => {
                                     <option name="11" value="11">11</option>
                                 </select>
                             </div>
-                            <div className='required'>
-                                Experience Month is required
+                            <div id='SelectMonthErr' className='required'>
+                                {/* Experience Month is required */}
                             </div>
                         </span>
                         <span className='lastName'>
@@ -114,18 +162,10 @@ const Form6 = () => {
                         </span>
                         <span className='name-input-full'>
                             <div>
-                                <input className='input-feild' type="text" name="" id="" placeholder='Company Name' />
+                                <input className='input-feild' type="text" placeholder='Company Name' onChange={(e) => setCompanyName(e.target.value)} />
                             </div>
                             <div className='required'>
                             </div>
-                        </span>
-                        <span className='name-input'>
-                            <div>
-                            </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                        <span className='lastName'>
                         </span>
                     </div>
 
@@ -137,18 +177,10 @@ const Form6 = () => {
                         </span>
                         <span className='name-input-full'>
                             <div>
-                                <input className='input-feild' type="text" name="" id="" placeholder='Job Title' />
+                                <input className='input-feild' type="text" placeholder='Job Title' onChange={(e) => setJobTitle(e.target.value)} />
                             </div>
                             <div className='required'>
                             </div>
-                        </span>
-                        <span className='name-input'>
-                            <div>
-                            </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                        <span className='lastName'>
                         </span>
                     </div>
 
@@ -160,7 +192,7 @@ const Form6 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' id="SelectMonth2">
+                                <select className='input-feild' onChange={(e) => setSelectMonth2(e.target.value)} >
                                     <option value="">Select Month</option>
                                     <option name="January" value="Jan">January</option>
                                     <option name="February" value="Feb">February</option>
@@ -181,7 +213,7 @@ const Form6 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' name="" id="SelectYear2">
+                                <select className='input-feild' onChange={(e) => setSelectYear2(e.target.value)} >
                                     <option value="">Select Year</option>
                                     <option value="2023">2023</option>
                                     <option value="2022">2022</option>
@@ -229,8 +261,8 @@ const Form6 = () => {
                     <hr />
 
                     <div className='button'>
-                        <a className='previous-button' href="">Previous</a>
-                        <a className='next-button' href="">Next</a>
+                        <button className='previous-button' onClick={handleClick}>Previous</button>
+                        <button type='submit' className='next-button' >Next</button>
                     </div>
 
 

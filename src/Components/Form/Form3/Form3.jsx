@@ -1,18 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Form3 = () => {
+  const [Address, setAddress] = useState('')
+  const [Area, setArea] = useState('')
+  const [Country, setCountry] = useState('')
+  const [SelectState, setSelectState] = useState('')
+  const [City, setCity] = useState('')
+  const [Pincode, setPincode] = useState('')
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/form2")
+  }
+
+  function validateForm(e) {
+    e.preventDefault();
+    if (Address.trim() === "") {
+      document.getElementById('AddressErr').innerHTML = "Address is required"
+    } else {
+      console.log(Address)
+    }
+
+    if (Area.trim() === "") {
+      document.getElementById('AreaErr').innerHTML = "Area is required"
+    } else {
+      console.log(Area)
+    }
+
+    if (Country.trim() === "") {
+    } else {
+      console.log(Country)
+    }
+
+    if (SelectState.trim() === "") {
+    } else {
+      console.log(SelectState)
+    }
+
+    if (City.trim() === "") {
+    } else {
+      console.log(City)
+    }
+
+    if (Pincode.trim() === "") {
+      document.getElementById('PincodeErr').innerHTML = "Pincode is required"
+    } else {
+      console.log(Pincode)
+      navigate("/form4")
+    }
+  }
   return (
     <div className="contner">
-      <div style={{color:'#630460'}} className="contner-top">
+      <div style={{ color: '#630460' }} className="contner-top">
         <div className="form-name">
-        Hometown Address
+          Hometown Address
         </div>
         <div className="form-number">
           3/12
         </div>
       </div>
       <div className="main-form-div">
-        <form action=""><br /><br />
+        <form onSubmit={validateForm} action=""><br /><br />
 
           <div className='name'>
             <span className='name-lable'>
@@ -20,10 +69,11 @@ const Form3 = () => {
             </span>
             <span className='name-input-full'>
               <div>
-                <input className='input-feild' type="text" placeholder='Address' />
+                <input className='input-feild' type="text" placeholder='Address'
+                  onChange={(e) => setAddress(e.target.value)} />
               </div>
-              <div className='required'>
-                Address is required
+              <div id='AddressErr' className='required'>
+                {/* Address is required */}
               </div>
             </span>
           </div>
@@ -36,10 +86,11 @@ const Form3 = () => {
             </span>
             <span className='name-input-full'>
               <div>
-                <input className='input-feild' type="text" placeholder='Area' />
+                <input className='input-feild' type="text" placeholder='Area'
+                  onChange={(e) => setArea(e.target.value)} />
               </div>
-              <div className='required'>
-                Area is required
+              <div id='AreaErr' className='required'>
+                {/* Area is required */}
               </div>
             </span>
           </div>
@@ -48,11 +99,12 @@ const Form3 = () => {
 
           <div className='name'>
             <span className='name-lable'>
-              <label htmlFor="">Country <b>*</b></label>
+              <label htmlFor="">Country<b>*</b></label>
             </span>
             <span className='name-input'>
               <div>
-                <select className='input-feild' name="" id="country" >
+                <select className='input-feild'
+                  onChange={(e) => setCountry(e.target.value)} >
                   <option value="">Select Country</option>
                   <option value="india">India</option>
                   <option value="UnitedState">United State</option>
@@ -63,7 +115,8 @@ const Form3 = () => {
             </span>
             <span className='name-input'>
               <div>
-                <select className='input-feild' name="" id="state" >
+                <select className='input-feild'
+                  onChange={(e) => setSelectState(e.target.value)}   >
                   <option value="">Select State</option>
                   <option value="Andhra-Pradesh">Andhra Pradesh</option>
                   <option value="Andaman-and-Nicobar-Islands">Andaman and Nicobar Islands</option>
@@ -118,7 +171,8 @@ const Form3 = () => {
             </span>
             <span className='name-input'>
               <div>
-                <select className='input-feild' name="" id="city">
+                <select className='input-feild'
+                  onChange={(e) => setCity(e.target.value)}  >
                   <option value="">Select City</option>
                   <option value="Adilabad">Adilabad</option>
                   <option value="Agra">Agra</option>
@@ -764,10 +818,11 @@ const Form3 = () => {
             </span>
             <span className='name-input'>
               <div>
-                <input className='input-feild' type="number" placeholder='Pincode' />
+                <input className='input-feild' type="number" placeholder='Pincode'
+                  onChange={(e) => setPincode(e.target.value)} />
               </div>
-              <div className='required'>
-                Pincode is required
+              <div id='PincodeErr' className='required'>
+                {/* Pincode is required */}
               </div>
             </span>
             <span className='lastName'>
@@ -778,12 +833,9 @@ const Form3 = () => {
           <hr />
 
           <div className='button'>
-            <a className='previous-button' href="">Previous</a>
-            <a className='next-button' href="">Next</a>
+            <button className='previous-button' onClick={handleClick}>Previous</button>
+            <button type='submit' className='next-button' >Next</button>
           </div>
-
-
-
         </form>
       </div>
     </div>

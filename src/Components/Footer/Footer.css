@@ -1,0 +1,58 @@
+.footer {
+  padding: 5rem;
+}
+
+.footer-content {
+  display: flex;
+}
+
+.footer-content div {
+  padding: 0rem 2rem 2rem 1rem;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+p {
+  color: #616161;
+  font-weight: 500;
+}
+
+p:hover {
+  color: black;
+}
+
+.lower-footer {
+  display: flex;
+}
+
+.copyright {
+  margin-left: 1rem;
+  color: #616161;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.copyright a {
+  margin-left: 1rem;
+  color: #616161;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.privacy {
+  margin-left: 25rem;
+  color: #616161;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.privacy a {
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  color: #616161;
+  font-weight: 500;
+  font-size: 1rem;
+}

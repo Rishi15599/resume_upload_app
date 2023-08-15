@@ -1,0 +1,220 @@
+.contner {
+    margin: 6rem;
+  }
+  
+  .contner-top {
+    display: flex;
+    /* color: #630460; */
+    background-color: #fcfcfc;
+    border-left: 3px solid;
+    padding: 18px 12px 18px 50px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-name {
+    font-size: calc(1.3rem + 0.6vw);
+    margin-left: 2px;
+    font-weight: 200;
+  }
+  
+  .form-number {
+    font-size: calc(1.3rem + 0.6vw);
+    margin-left: 2px;
+    font-weight: 200;
+    position: absolute;
+    right: 7rem;
+  }
+  
+  /* ----------------------------------------------------------------- */
+  
+  .main-form-div {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+      0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .name {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    align-items: center !important;
+  }
+  
+  .name-lable {
+    text-align: right;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 24px 12px 0;
+    margin-bottom: 15px;
+  
+    text-align: right;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 24px 12px 0;
+  
+    flex: 0 0 auto;
+    width: 33.33333333%;
+  }
+  
+  .name-lable b,b {
+    margin-left: 5px;
+    color: #dc3545 !important;
+    font-weight: bold;
+  }
+  
+  .name-input {
+    flex: 0 0 auto;
+    width: 25%;
+    margin-left: 1rem;
+  }
+  
+  .name-input-full {
+    flex: 0 0 auto;
+    width: 51%;
+    margin-left: 1rem;
+  }
+  
+  .input-feild {
+    font-size: 1rem;
+    width: 100%;
+    display: block;
+    height: 36px;
+    width: 100%;
+    border: none;
+    color: #333;
+    font-weight: 300;
+    padding: 0;
+    border-radius: 0 !important;
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid #d3d3d3 !important;
+  }
+  
+  .input-feild-photo {
+    background-image: url(/public/images/user.png);
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+  }
+  
+  .required {
+    font-size: 1rem;
+    color: #d50000;
+    font-size: small;
+    margin-bottom: 0 !important;
+    margin-top: 0.5rem;
+  }
+  
+  .button {
+    text-align: right;
+    padding: 1rem 1rem;
+  }
+  
+  .previous-button {
+    color: black;
+    background-color: white;
+    border-color: whitesmoke;
+  
+    display: inline-block;
+    padding: 6px 12px;
+    margin-left: 10px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid rgb(219, 199, 199);
+    border-radius: 4px;
+  }
+  
+  .previous-button:hover {
+    color: #0c0c0c;
+    background-color: #dce0e7;
+    border-color: #f6f7f8;
+  }
+  
+  .next-button {
+    color: #fff;
+    background-color: #234a8b;
+    border-color: #234a8b;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-left: 10px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .next-button:hover {
+    color: whitesmoke;
+    background-color: #002e79;
+    border-color: #025efc;
+  }
+  
+  /* ------------------------------------------------------------------- */
+
+  table, th, td {
+    border: 1px solid #d3d3d3;
+    border-collapse: collapse;
+    
+  }
+
+  table{
+    width: 100%;
+  }
+
+td{
+    text-align: start;
+    padding: 0.5rem;
+}
+
+.redStar{
+    color: #dc3545 !important;
+    padding-left: 5px;
+}
+
+.name{
+    font-weight: 900;
+}
+
+
+select {
+    height: 2.2rem;
+    font-size: 1rem;
+    border: none;
+    color: #333;
+    font-weight: 300;
+    border-radius: 0 !important;
+    background-color: transparent;
+    border-bottom: 1px solid #d3d3d3 !important;
+    width: 100%;
+}
+
+.err{
+    color: #d50000;
+    margin-left: 5px;
+    margin-top: 0.5rem;
+}

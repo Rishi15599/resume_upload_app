@@ -1,0 +1,26 @@
+.wallpaper {
+    height: 25rem;
+    background-image: url(/public/images/wallpaper.jpg);
+    background-size: cover !important;
+    background-position: center center !important;
+}
+
+.job {
+    position: absolute;
+    background-color: #234A8B;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 1rem 0.8rem 1rem 0.8rem;
+    margin-left: 76rem;
+    margin-top: 12rem;
+}
+
+.heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #212529;
+    margin-top: 4.5rem;
+}

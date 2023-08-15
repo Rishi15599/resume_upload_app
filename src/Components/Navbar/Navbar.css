@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.navbar {
+    display: flex;
+    height: 3rem;
+    background-color: #234A8B;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.navbar div img {
+    padding-top: 0.3rem;
+    padding-left: 5.5rem;
+}
+
+.navbar-content {
+    display: flex;
+    padding-left: 32rem;
+    padding-top: 0.8rem;
+}
+
+.navbar-content div {
+    padding: 0.6rem;
+}
+
+.navbar-content div a {
+    color: white;
+    font-weight: 300;
+    text-decoration: none;
+    font-size: medium;
+}
+
+.navbar-content div a:hover {
+    text-decoration: underline;
+}

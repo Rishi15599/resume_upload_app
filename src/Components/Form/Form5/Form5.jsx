@@ -18,31 +18,41 @@ const Form5 = () => {
         if (KnowledgeReact.trim() === "") {
             document.getElementById('KnowledgeReactErr').innerHTML = "Knowledge Level is required"
         } else {
-            console.log(KnowledgeReact)
+            document.getElementById('KnowledgeReactErr').innerHTML = ""
+            console.log("Knowledge in React : "+KnowledgeReact)
         }
 
         if (KnowledgeHtml.trim() === "") {
             document.getElementById('KnowledgeHtmlErr').innerHTML = "Knowledge Level is required"
         } else {
-            console.log(KnowledgeHtml)
+            document.getElementById('KnowledgeHtmlErr').innerHTML = ""
+            console.log("Knowledge in HTML : "+KnowledgeHtml)
         }
 
         if (KnowledgeCss.trim() === "") {
             document.getElementById('KnowledgeCssErr').innerHTML = "Knowledge Level is required"
         } else {
-            console.log(KnowledgeCss)
+            document.getElementById('KnowledgeCssErr').innerHTML = ""
+            console.log("Knowledge in CSS : "+KnowledgeCss)
         }
 
         if (KnowledgeJavaScript.trim() === "") {
             document.getElementById('KnowledgeJavaScriptErr').innerHTML = "Knowledge Level is required"
         } else {
-            console.log(KnowledgeJavaScript)
+            document.getElementById('KnowledgeJavaScriptErr').innerHTML = ""
+            console.log("Knowledge in JavaScript : "+KnowledgeJavaScript)
         }
 
         if (KnowledgeJQuery.trim() === "") {
             document.getElementById('KnowledgeJQueryErr').innerHTML = "Knowledge Level is required"
         } else {
-            console.log(KnowledgeJQuery)
+            document.getElementById('KnowledgeJQueryErr').innerHTML = ""
+            console.log("Knowledge in JQuery : "+KnowledgeJQuery)
+        }
+
+        if(KnowledgeReact.trim() === "" || KnowledgeHtml.trim() === "" || KnowledgeCss.trim() === "" || KnowledgeJavaScript.trim() === "" || KnowledgeJQuery.trim() === ""){
+
+        }else{
             navigate("/form6")
         }
     }

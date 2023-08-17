@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Form11 = () => {
+    const [Vaccinated, setVaccinated] = useState('')
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/form10")
+    }
+
+    function validateForm(e) {
+        e.preventDefault();
+
+        if (Vaccinated.trim() === "") {
+            document.getElementById('VaccinatedErr').innerHTML = "Vaccination Detail is required"
+        } else {
+            document.getElementById('VaccinatedErr').innerHTML = ""
+            console.log("Vaccinated : " + Vaccinated)
+            navigate('/form12')
+        }
+    }
     return (
         <div className="contner">
             <div style={{ color: '#197b30' }} className="contner-top">
@@ -12,7 +31,7 @@ const Form11 = () => {
                 </div>
             </div>
             <div className="main-form-div">
-                <form action=""><br /><br />
+                <form onSubmit={validateForm} action=""><br /><br />
 
                     <div className='name'>
                         <span className='name-lable'>
@@ -20,34 +39,23 @@ const Form11 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <input type="radio" name="Vaccinated" id="" />&nbsp;
+                                <input type="radio" name="Vaccinated" value="Yes" onChange={(e) => setVaccinated(e.target.value)}/>&nbsp;
                                 <label htmlFor="">Yes</label>&nbsp;&nbsp;
-                                <input type="radio" name="Vaccinated" id="" />&nbsp;
+                                <input type="radio" name="Vaccinated" value="No" onChange={(e) => setVaccinated(e.target.value)}/>&nbsp;
                                 <label htmlFor="">No</label>
                             </div>
                             <br /><br />
-                            <div className='required'>
-                                Vaccination Detail is required
+                            <div id='VaccinatedErr' className='required'>
                             </div>
-                        </span>
-                        <span className='name-input'>
-                            <div>
-                            </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                        <span className='lastName'>
                         </span>
                     </div>
 
                     <hr />
 
                     <div className='button'>
-                        <a className='previous-button' href="">Previous</a>
-                        <a className='next-button' href="">Next</a>
+                        <button className='previous-button' onClick={handleClick}>Previous</button>
+                        <button className='next-button' >Next</button>
                     </div>
-
-
 
                 </form>
             </div>

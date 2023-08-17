@@ -2,8 +2,45 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Form4 = () => {
-  const [SelectDegree, setSelectDegree] = useState('')
-  const [SelectDepartment, setSelectDepartment] = useState('')
+  const Degree = [
+    {
+      name: "BE",
+      Department: ["CSE", "EEE", "ECE", "ME", "IT", "Others"]
+    },
+    {
+      name: "B.Sc",
+      Department: ["CS", "IT", "Others"]
+    },
+    {
+      name: "B.Tech",
+      Department: ["CS", "IT", "Others"]
+    },
+    {
+      name: "MBA",
+      Department: ["HR", "Marketing", "Systems", "Others"]
+    },
+    {
+      name: "MCA",
+      Department: ["CS", "Others"]
+    },
+    {
+      name: "M.Sc",
+      Department: ["CS", "Others"]
+    },
+    {
+      name: "M.Tech",
+      Department: ["CSE", "EEE", "ECE", "Me", "IT", "Others"]
+    },
+    {
+      name: "Others",
+      Department: ["Others"]
+    }
+  ]
+
+
+
+  // const [SelectDegree, setSelectDegree] = useState('')
+  // const [SelectDepartment, setSelectDepartment] = useState('')
   const [SelectYear, setSelectYear] = useState('')
   const [Percentage1, setPercentage1] = useState('')
   const [th12, setth12] = useState('')
@@ -12,6 +49,20 @@ const Form4 = () => {
   const [th10, setth10] = useState('')
   const [Percentage3, setPercentage3] = useState('')
   const navigate = useNavigate();
+
+  const [SelectDegree, setSelectDegree] = useState('');
+  const [SelectDepartment, setSelectDepartment] = useState('');
+
+  const [Department, setDepartment] = useState([])
+
+  const selectDegree = (event) => {
+    setSelectDegree(event.target.value);
+    setDepartment(Degree.find(Deg=>Deg.name === event.target.value).Department)
+  }
+
+  function selectDepartment(event) {
+    setSelectDepartment(event.target.value);
+  }
 
   function handleClick() {
     navigate("/form3")
@@ -22,54 +73,67 @@ const Form4 = () => {
     if (SelectDegree.trim() === "") {
       document.getElementById('SelectDegreeErr').innerHTML = "Qualification is required"
     } else {
-      console.log(SelectDegree)
+      document.getElementById('SelectDegreeErr').innerHTML = ""
+      console.log("Degree : " + SelectDegree)
     }
 
     if (SelectDepartment.trim() === "") {
       document.getElementById('SelectDepartmentErr').innerHTML = "Department is required"
     } else {
-      console.log(SelectDepartment)
+      document.getElementById('SelectDepartmentErr').innerHTML = ""
+      console.log("Department : " + SelectDepartment)
     }
 
     if (SelectYear.trim() === "") {
       document.getElementById('SelectYearErr').innerHTML = "Year Of Passing is required"
     } else {
-      console.log(SelectYear)
+      document.getElementById('SelectYearErr').innerHTML = ""
+      console.log("YOP : " + SelectYear)
     }
 
     if (Percentage1.trim() === "") {
       document.getElementById('Percentage1Err').innerHTML = "Percentage is required"
     } else {
-      console.log(Percentage1)
+      document.getElementById('Percentage1Err').innerHTML = ""
+      console.log("Degree Percentage : " + Percentage1)
+    }
+
+    if (semester.trim() === "") {
+    } else {
+      console.log("Semester Back : " + semester)
     }
 
     if (th12.trim() === "") {
       document.getElementById('th12Err').innerHTML = "12th Passing Year is required"
     } else {
-      console.log(th12)
+      document.getElementById('th12Err').innerHTML = ""
+      console.log("12th (YOP) : " + th12)
     }
 
     if (Percentage2.trim() === "") {
       document.getElementById('Percentage2Err').innerHTML = "Percentage is required"
     } else {
-      console.log(Percentage2)
-    }
-
-    if (semester.trim() === "") {
-    } else {
-      console.log(semester)
+      document.getElementById('Percentage2Err').innerHTML = ""
+      console.log("12th Percentage : " + Percentage2)
     }
 
     if (th10.trim() === "") {
       document.getElementById('th10Err').innerHTML = "10th Passing Year is required"
     } else {
-      console.log(th10)
+      document.getElementById('th10Err').innerHTML = ""
+      console.log("10th (YOP) : " + th10)
     }
 
     if (Percentage3.trim() === "") {
       document.getElementById('Percentage3Err').innerHTML = "Percentage is required"
     } else {
-      console.log(Percentage3)
+      document.getElementById('Percentage3Err').innerHTML = ""
+      console.log("10th Percentage : " + Percentage3)
+    }
+
+    if (SelectDepartment.trim() === "" || SelectYear.trim() === "" || Percentage1.trim() === "" || semester.trim() === "" || th12.trim() === "" || Percentage2.trim() === "" || th10.trim() === "" || Percentage3.trim() === "") {
+
+    } else {
       navigate("/form5")
     }
   }
@@ -92,17 +156,12 @@ const Form4 = () => {
             </span>
             <span className='name-input'>
               <div>
-                <select className='input-feild'
-                  onChange={(e) => setSelectDegree(e.target.value)} >
+                <select className='input-feild' value={SelectDegree}
+                  onChange={selectDegree} >
                   <option value="">Select Degree</option>
-                  <option value="BE">BE</option>
-                  <option value="B.Sc">B.Sc</option>
-                  <option value="B.Tech">B.Tech</option>
-                  <option value="MBA">MBA</option>
-                  <option value="MCA">MCA</option>
-                  <option value="M.Sc">M.Sc</option>
-                  <option value="M.Tech">M.Tech</option>
-                  <option value="Others">Others</option>
+                  {Degree.map(Deg => (
+                    <option value={Deg.name}>{Deg.name}</option>
+                  ))}
                 </select>
               </div>
               <div id='SelectDegreeErr' className='required'>
@@ -111,22 +170,19 @@ const Form4 = () => {
             </span>
             <span className='name-input'>
               <div>
-                <select className='input-feild'
-                  onChange={(e) => setSelectDepartment(e.target.value)} >
+                <select className='input-feild' value={SelectDepartment}
+                  onChange={selectDepartment} >
                   <option value="">Select Department</option>
-                  <option value="CSE">CSE</option>
-                  <option value="ECE">ECE</option>
-                  <option value="EEE">EEE</option>
-                  <option value="ME">ME</option>
-                  <option value="IT">IT</option>
-                  <option value="Others">Others</option>
+                  {Department.map(SelectDepartment => (
+                    <option value={SelectDepartment}>{SelectDepartment}</option>
+                  ))
+
+                  }
                 </select>
               </div>
               <div id='SelectDepartmentErr' className='required'>
                 {/* Department is required */}
               </div>
-            </span>
-            <span className='lastName'>
             </span>
           </div>
 
@@ -190,8 +246,6 @@ const Form4 = () => {
                 {/* Percentage is required */}
               </div>
             </span>
-            <span className='lastName'>
-            </span>
           </div>
 
           <br />
@@ -202,12 +256,12 @@ const Form4 = () => {
             </span>
             <span className='name-input'>
               <div>
-                <input type="radio" name="semester"
-                onChange={(e) => setsemester(e.target.value)} 
+                <input type="radio" name="semester" value="Yes"
+                  onChange={(e) => setsemester(e.target.value)}
                 />&nbsp;
                 <label htmlFor="">Yes</label>&nbsp;&nbsp;
-                <input type="radio" name="semester"
-                onChange={(e) => setsemester(e.target.value)}
+                <input type="radio" name="semester" value="No"
+                  onChange={(e) => setsemester(e.target.value)}
                 />&nbsp;
                 <label htmlFor="">No</label>
               </div>
@@ -276,8 +330,6 @@ const Form4 = () => {
                 {/* Percentage is required */}
               </div>
             </span>
-            <span className='lastName'>
-            </span>
           </div>
 
           <br />
@@ -339,8 +391,6 @@ const Form4 = () => {
               <div id='Percentage3Err' className='required'>
                 {/* Percentage is required */}
               </div>
-            </span>
-            <span className='lastName'>
             </span>
           </div>
 

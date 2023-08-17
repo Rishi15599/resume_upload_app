@@ -8,7 +8,7 @@ const Footer = () => {
         <hr />
         <div className="footer-content">
           <div>
-            <h3>About ThiDiff</h3>
+            <h3>About</h3>
             <p>About</p>
             <p>Clients</p>
             <p>Blogs</p>
@@ -61,7 +61,7 @@ const Footer = () => {
         <hr />
         <div className="lower-footer">
           <div className="copyright">
-            Copyright © 2023 <a href="">ThiDiff Technologies.</a> All rights reserved.
+            Copyright © 2023 <a href="">My Technologies.</a> All rights reserved.
           </div>
           <div className="privacy">
             <a href="">Privacy Policy</a>|<a href="">Terms of Use </a>|<a href="">Site Map</a>

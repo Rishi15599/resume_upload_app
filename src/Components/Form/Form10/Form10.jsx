@@ -1,9 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Form10 = () => {
+    const [SelectReference, setSelectReference] = useState('')
+    const [JobReferenceName, setJobReferenceName] = useState('')
+    const [English, setEnglish] = useState('')
+    const [Tamil, setTamil] = useState('')
+    const [Telugu, setTelugu] = useState('')
+    const [Kannada, setKannada] = useState('')
+    const [Malayalam, setMalayalam] = useState('')
+    const [Hindi, setHindi] = useState('')
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/form9")
+    }
+
+    function validateForm(e) {
+        e.preventDefault();
+
+        if (SelectReference.trim() === "") {
+            document.getElementById('SelectReferenceErr').innerHTML = "Job Reference is required"
+        } else {
+            document.getElementById('SelectReferenceErr').innerHTML = ""
+            console.log("Reference : " + SelectReference)
+        }
+
+        if (JobReferenceName.trim() === "") {
+            document.getElementById('JobReferenceNameErr').innerHTML = "Job Reference Name is required"
+        } else {
+            document.getElementById('JobReferenceNameErr').innerHTML = ""
+            console.log("Job Reference : " + JobReferenceName)
+        }
+
+        if (English.trim() === "" && Tamil.trim() === "" && Telugu.trim() === "" && Kannada.trim() === "" && Malayalam.trim() === "" && Hindi.trim() === "") {
+            document.getElementById('EnglishErr').innerHTML = "Known Language is required"
+        } else {
+            document.getElementById('EnglishErr').innerHTML = ""
+            console.log("Known Languages : " + English + " " + Tamil + " " + Telugu + " " + Kannada + " " + Malayalam + " " + Hindi)
+        }
+
+        if (SelectReference.trim() === "" || JobReferenceName.trim() === "" || (English.trim() === "" && Tamil.trim() === "" && Telugu.trim() === "" && Kannada.trim() === "" && Malayalam.trim() === "" && Hindi.trim() === "")) {
+
+        } else {
+            navigate("/form11")
+        }
+    }
     return (
         <div className="contner">
-            <div style={{color:'#9e0b0f'}} className="contner-top">
+            <div style={{ color: '#9e0b0f' }} className="contner-top">
                 <div className="form-name">
                     General
                 </div>
@@ -12,7 +57,7 @@ const Form10 = () => {
                 </div>
             </div>
             <div className="main-form-div">
-                <form action=""><br /><br />
+                <form onSubmit={validateForm} action=""><br /><br />
 
                     <div className='name'>
                         <span className='name-lable'>
@@ -20,7 +65,7 @@ const Form10 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' name="" id="SelectReference">
+                                <select className='input-feild' onChange={(e) => setSelectReference(e.target.value)}>
                                     <option value="">Select Reference</option>
                                     <option value="Job Portal">Job Portal</option>
                                     <option value="Employee Referral">Employee Referral</option>
@@ -30,19 +75,16 @@ const Form10 = () => {
                                     <option value="Training Institute">Training Institute</option>
                                 </select>
                             </div>
-                            <div className='required'>
-                                Job Reference is required
+                            <div id='SelectReferenceErr' className='required'>
                             </div>
                         </span>
                         <span className='name-input'>
                             <div>
-                                <input className='input-feild' type="text" name="" id="" placeholder="Job Reference Name" />
+                                <input className='input-feild' type="text" placeholder="Job Reference Name"
+                                    onChange={(e) => setJobReferenceName(e.target.value)} />
                             </div>
-                            <div className='required'>
-                                Job Reference Name is required
+                            <div id='JobReferenceNameErr' className='required'>
                             </div>
-                        </span>
-                        <span className='lastName'>
                         </span>
                     </div>
 
@@ -55,36 +97,27 @@ const Form10 = () => {
                         </span>
                         <span className='name-input'>
                             <div style={{ color: '#333', fontWeight: '400', fontSize: '1rem' }}>
-                                <input type="checkbox" name="" id="" />&nbsp;
+                                <input type="checkbox" value="English" onChange={(e) => setEnglish(e.target.value)} />&nbsp;
                                 <label htmlFor="">English</label>
                                 <br />
-                                <input type="checkbox" name="" id="" />&nbsp;
+                                <input type="checkbox" value="Tamil" onChange={(e) => setTamil(e.target.value)} />&nbsp;
                                 <label htmlFor="">Tamil</label>
                                 <br />
-                                <input type="checkbox" name="" id="" />&nbsp;
+                                <input type="checkbox" value="Telugu" onChange={(e) => setTelugu(e.target.value)} />&nbsp;
                                 <label htmlFor="">Telugu</label>
                                 <br />
-                                <input type="checkbox" name="" id="" />&nbsp;
+                                <input type="checkbox" value="Kannada" onChange={(e) => setKannada(e.target.value)} />&nbsp;
                                 <label htmlFor="">Kannada</label>
                                 <br />
-                                <input type="checkbox" name="" id="" />&nbsp;
+                                <input type="checkbox" value="Malayalm" onChange={(e) => setMalayalam(e.target.value)} />&nbsp;
                                 <label htmlFor="">Malayalam</label>
                                 <br />
-                                <input type="checkbox" name="" id="" />&nbsp;
+                                <input type="checkbox" value="Hindi" onChange={(e) => setHindi(e.target.value)} />&nbsp;
                                 <label htmlFor="">Hindi</label>
                             </div>
                             <br />
-                            <div className='required'>
-                                Known Language is required
+                            <div id='EnglishErr' className='required'>
                             </div>
-                        </span>
-                        <span className='name-input'>
-                            <div>
-                            </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                        <span className='lastName'>
                         </span>
                     </div>
 
@@ -92,9 +125,10 @@ const Form10 = () => {
                     <hr />
 
                     <div className='button'>
-                        <a className='previous-button' href="">Previous</a>
-                        <a className='next-button' href="">Next</a>
+                        <button className='previous-button' onClick={handleClick}>Previous</button>
+                        <button className='next-button' >Next</button>
                     </div>
+
                 </form>
             </div>
         </div>

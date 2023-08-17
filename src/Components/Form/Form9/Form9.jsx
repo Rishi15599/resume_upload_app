@@ -1,6 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Form9 = () => {
+    const [SelectLakhs,setSelectLakhs]=useState('')
+    const [SelectThousands,setSelectThousands]=useState('')
+    const navigate = useNavigate();
+
+    function handleClick() {
+        navigate("/form8")
+    }
+
+    function validateForm(e) {
+        e.preventDefault();
+
+        if (SelectLakhs.trim() === "") {
+            document.getElementById('SelectLakhsErr').innerHTML = "Expected salary is required"
+        } else {
+            document.getElementById('SelectLakhsErr').innerHTML = ""
+            console.log("Expected Salery in Lakhs : "+SelectLakhs)
+        }
+
+        if (SelectThousands.trim() === "") {
+            document.getElementById('SelectThousandsErr').innerHTML = "Expected salary is required"
+        } else {
+            document.getElementById('SelectThousandsErr').innerHTML = ""
+            console.log("Expected Salery in Thousands : "+SelectThousands)
+        }
+
+        if(SelectLakhs.trim() === "" || SelectThousands.trim() === ""){
+
+        }else{
+            navigate("/form10")
+        }
+    }
     return (
         <div className="contner">
             <div style={{color:'#630460'}} className="contner-top">
@@ -12,7 +44,7 @@ const Form9 = () => {
                 </div>
             </div>
             <div className="main-form-div">
-                <form action=""><br /><br />
+                <form onSubmit={validateForm} action=""><br /><br />
 
                     <div className='name'>
                         <span className='name-lable'>
@@ -21,7 +53,7 @@ const Form9 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' name="" id="SelectYear">
+                                <select className='input-feild' onChange={(e) => setSelectLakhs(e.target.value)} >
                                     <option value="">Select Lakhs</option>
                                     <option name="1" value="1">1</option>
                                     <option name="2" value="2">2</option>
@@ -75,13 +107,12 @@ const Form9 = () => {
                                     <option name="50" value="50">50</option>
                                 </select>
                             </div>
-                            <div className='required'>
-                                Expected salary is required
-                            </div>
+                            <div id='SelectLakhsErr' className='required'>
+                           </div>
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' id="SelectMonth">
+                                <select className='input-feild' onChange={(e) => setSelectThousands(e.target.value)}>
                                     <option value="">Select Thousands</option>
                                     <option name="0" value="0">0</option>
                                     <option name="1" value="1">1</option>
@@ -185,11 +216,8 @@ const Form9 = () => {
                                     <option name="99" value="99">99</option>
                                 </select>
                             </div>
-                            <div className='required'>
-                                Expected salary is required
+                            <div id='SelectThousandsErr' className='required'>
                             </div>
-                        </span>
-                        <span className='lastName'>
                         </span>
                     </div>
 
@@ -198,8 +226,8 @@ const Form9 = () => {
                     <hr />
 
                     <div className='button'>
-                        <a className='previous-button' href="">Previous</a>
-                        <a className='next-button' href="">Next</a>
+                        <button className='previous-button' onClick={handleClick}>Previous</button>
+                        <button className='next-button' >Next</button>
                     </div>
                 </form>
             </div>

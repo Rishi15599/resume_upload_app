@@ -9,46 +9,67 @@ const Form6 = () => {
     const [SelectMonth2, setSelectMonth2] = useState('')
     const [SelectYear2, setSelectYear2] = useState('')
     const navigate = useNavigate();
+    const [isVisible, setIsVisible] = useState(false);
+
+    const changeHandler = (e) => {
+        setSelectMonth(e.target.value);
+        setSelectYear(e.target.value);
+
+        if (e.target.value === '0') {
+            setIsVisible(false);
+        } else {
+            setIsVisible(true);
+        }
+    };
 
     function handleClick() {
         navigate("/form5")
-    }
+    };
 
     function validateForm(e) {
         e.preventDefault();
-        if (SelectYear.trim() === "") {
-            document.getElementById('SelectYearErr').innerHTML = "Qualification is required"
-        } else {
-            console.log(SelectYear)
-        }
 
-        if (SelectMonth.trim() === "") {
+        if (SelectYear.trim() === "" || SelectMonth.trim() === "") {
+            document.getElementById('SelectYearErr').innerHTML = "Experience Year is required"
             document.getElementById('SelectMonthErr').innerHTML = "Experience Month is required"
-        } else {
-            console.log(SelectMonth)
-            navigate("/form7")
-        }
 
-        if (CompanyName.trim() === "") {
-        } else {
-            console.log(CompanyName)
         }
+        else if (SelectYear.trim() >= '0' || SelectMonth.trim() >= '0') {
+            if (SelectYear.trim() === '0' && SelectMonth.trim() === '0') {
+                navigate("/form7");
 
-        if (JobTitle.trim() === "") {
-        } else {
-            console.log(JobTitle)
-        }
+            }
+            else {
+                if (CompanyName.trim() === "" || JobTitle.trim() === "" || SelectMonth2.trim() === "" || SelectYear2.trim() === "") {
+                    document.getElementById('CompanyNameErr').innerHTML = "Company Name is required"
+                    document.getElementById('JobTitleErr').innerHTML = "Job Title is required"
+                    document.getElementById('SelectMonth2Err').innerHTML = "Joined Month is required"
+                    document.getElementById('SelectYear2Err').innerHTML = "Joined Year is required"
+                } else {
+                    document.getElementById('SelectYearErr').innerHTML = ""
+                    console.log("Overall Experience in Year : " + SelectYear)
 
-        if (SelectMonth2.trim() === "") {
-        } else {
-            console.log(SelectMonth2)
-        }
+                    document.getElementById('SelectMonthErr').innerHTML = ""
+                    console.log("Overall Experience in Month : " + SelectMonth)
 
-        if (SelectYear2.trim() === "") {
-        } else {
-            console.log(SelectYear2)
+                    document.getElementById('CompanyNameErr').innerHTML = ""
+                    console.log("Company Name : " + CompanyName)
+
+                    document.getElementById('JobTitleErr').innerHTML = ""
+                    console.log("Job Title : " + JobTitle)
+
+                    document.getElementById('SelectMonth2Err').innerHTML = ""
+                    console.log("Started Month : " + SelectMonth2)
+
+                    document.getElementById('SelectYear2Err').innerHTML = ""
+                    console.log("Started year : " + SelectYear2)
+
+                    navigate("/form7")
+                }
+            }
         }
-    }
+    };
+
     return (
         <div className="contner">
             <div style={{ color: '#630460' }} className="contner-top">
@@ -69,7 +90,9 @@ const Form6 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' onChange={(e) => setSelectYear(e.target.value)} >
+                                <select className='input-feild'
+                                    onChange={changeHandler}
+                                >
                                     <option value="">Select Year</option>
                                     <option name="0" value="0">0</option>
                                     <option name="1" value="1">1</option>
@@ -130,7 +153,9 @@ const Form6 = () => {
                         </span>
                         <span className='name-input'>
                             <div>
-                                <select className='input-feild' onChange={(e) => setSelectMonth(e.target.value)}  >
+                                <select className='input-feild'
+                                    onChange={changeHandler}
+                                >
                                     <option value="">Select Month</option>
                                     <option name="0" value="0">0</option>
                                     <option name="1" value="1">1</option>
@@ -150,113 +175,114 @@ const Form6 = () => {
                                 {/* Experience Month is required */}
                             </div>
                         </span>
-                        <span className='lastName'>
-                        </span>
                     </div>
 
                     <br />
 
-                    <div className='name'>
-                        <span className='name-lable'>
-                            <label htmlFor="">Company Name<b></b></label>
-                        </span>
-                        <span className='name-input-full'>
-                            <div>
-                                <input className='input-feild' type="text" placeholder='Company Name' onChange={(e) => setCompanyName(e.target.value)} />
+                    {isVisible ? (
+                        <div>
+                            <div className='name'>
+                                <span className='name-lable'>
+                                    <label htmlFor="">Company Name<b></b></label>
+                                </span>
+                                <span className='name-input-full'>
+                                    <div>
+                                        <input className='input-feild' type="text" placeholder='Company Name' onChange={(e) => setCompanyName(e.target.value)} />
+                                    </div>
+                                    <div id='CompanyNameErr' className='required'>
+                                    </div>
+                                </span>
                             </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                    </div>
 
-                    <br />
+                            <br />
 
-                    <div className='name'>
-                        <span className='name-lable'>
-                            <label htmlFor="">Job Title<b></b></label>
-                        </span>
-                        <span className='name-input-full'>
-                            <div>
-                                <input className='input-feild' type="text" placeholder='Job Title' onChange={(e) => setJobTitle(e.target.value)} />
+                            <div className='name'>
+                                <span className='name-lable'>
+                                    <label htmlFor="">Job Title<b></b></label>
+                                </span>
+                                <span className='name-input-full'>
+                                    <div>
+                                        <input className='input-feild' type="text" placeholder='Job Title' onChange={(e) => setJobTitle(e.target.value)} />
+                                    </div>
+                                    <div id='JobTitleErr' className='required'>
+                                    </div>
+                                </span>
                             </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                    </div>
 
-                    <br />
+                            <br />
 
-                    <div className='name'>
-                        <span className='name-lable'>
-                            <label htmlFor="">Started From<b></b></label>
-                        </span>
-                        <span className='name-input'>
-                            <div>
-                                <select className='input-feild' onChange={(e) => setSelectMonth2(e.target.value)} >
-                                    <option value="">Select Month</option>
-                                    <option name="January" value="Jan">January</option>
-                                    <option name="February" value="Feb">February</option>
-                                    <option name="March" value="Mar">March</option>
-                                    <option name="April" value="Apr">April</option>
-                                    <option name="May" value="May">May</option>
-                                    <option name="June" value="Jun">June</option>
-                                    <option name="July" value="Jul">July</option>
-                                    <option name="August" value="Aug">August</option>
-                                    <option name="September" value="Sep">September</option>
-                                    <option name="October" value="Oct">October</option>
-                                    <option name="November" value="Nov">November</option>
-                                    <option name="December" value="Dec">December</option>
-                                </select>
+                            <div className='name'>
+                                <span className='name-lable'>
+                                    <label htmlFor="">Started From<b></b></label>
+                                </span>
+                                <span className='name-input'>
+                                    <div>
+                                        <select className='input-feild' onChange={(e) => setSelectMonth2(e.target.value)} >
+                                            <option value="">Select Month</option>
+                                            <option name="January" value="Jan">January</option>
+                                            <option name="February" value="Feb">February</option>
+                                            <option name="March" value="Mar">March</option>
+                                            <option name="April" value="Apr">April</option>
+                                            <option name="May" value="May">May</option>
+                                            <option name="June" value="Jun">June</option>
+                                            <option name="July" value="Jul">July</option>
+                                            <option name="August" value="Aug">August</option>
+                                            <option name="September" value="Sep">September</option>
+                                            <option name="October" value="Oct">October</option>
+                                            <option name="November" value="Nov">November</option>
+                                            <option name="December" value="Dec">December</option>
+                                        </select>
+                                    </div>
+                                    <div id='SelectMonth2Err' className='required'>
+                                    </div>
+                                </span>
+                                <span className='name-input'>
+                                    <div>
+                                        <select className='input-feild' onChange={(e) => setSelectYear2(e.target.value)} >
+                                            <option value="">Select Year</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
+                                            <option value="2011">2011</option>
+                                            <option value="2010">2010</option>
+                                            <option value="2009">2009</option>
+                                            <option value="2008">2008</option>
+                                            <option value="2007">2007</option>
+                                            <option value="2006">2006</option>
+                                            <option value="2005">2005</option>
+                                            <option value="2004">2004</option>
+                                            <option value="2003">2003</option>
+                                            <option value="2002">2002</option>
+                                            <option value="2001">2001</option>
+                                            <option value="2000">2000</option>
+                                            <option value="1999">1999</option>
+                                            <option value="1998">1998</option>
+                                            <option value="1997">1997</option>
+                                            <option value="1996">1996</option>
+                                            <option value="1995">1995</option>
+                                            <option value="1994">1994</option>
+                                            <option value="1993">1993</option>
+                                            <option value="1992">1992</option>
+                                            <option value="1991">1991</option>
+                                            <option value="1990">1990</option>
+                                        </select>
+                                    </div>
+                                    <div id='SelectYear2Err' className='required'>
+                                    </div>
+                                </span>
                             </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                        <span className='name-input'>
-                            <div>
-                                <select className='input-feild' onChange={(e) => setSelectYear2(e.target.value)} >
-                                    <option value="">Select Year</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2000">2000</option>
-                                    <option value="1999">1999</option>
-                                    <option value="1998">1998</option>
-                                    <option value="1997">1997</option>
-                                    <option value="1996">1996</option>
-                                    <option value="1995">1995</option>
-                                    <option value="1994">1994</option>
-                                    <option value="1993">1993</option>
-                                    <option value="1992">1992</option>
-                                    <option value="1991">1991</option>
-                                    <option value="1990">1990</option>
-                                </select>
-                            </div>
-                            <div className='required'>
-                            </div>
-                        </span>
-                        <span className='lastName'>
-                        </span>
-                    </div>
+                        </div>
+                    ) : null}
+
                     <br />
                     <hr />
 

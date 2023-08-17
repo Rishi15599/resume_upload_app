@@ -1,67 +1,112 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-
 const Form1 = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [photo, setPhoto] = useState('')
-  const [mobileNumber, setMobileNumber] = useState('')
+  const [image, setImage] = useState('')
   const [email, setEmail] = useState('')
   const [gender, setGender] = useState('')
   const [maritalStatus, setMaritalStatus] = useState('')
   const [age, setAge] = useState('')
   const navigate = useNavigate();
 
+  const [rawPhoneNumber, setRawPhoneNumber] = useState('');
+  const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
+
+
+  const formatPhoneNumber = (event) => {
+    const inputValue = event.target.value;
+    setRawPhoneNumber(inputValue);
+    const formattedValue = formatAsPhoneNumber(inputValue);
+    setFormattedPhoneNumber(formattedValue);
+  };
+
+  const formatAsPhoneNumber = (value) => {
+    value = value.replace(/\D/g, '');
+    if (value.length > 10) {
+      value = value.slice(0, 10);
+    }
+    value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
+    return value;
+  };
+
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+    }
+  }
+
   function validateForm(e) {
     e.preventDefault();
+
     if (firstName.trim() === "") {
       document.getElementById('firstnameErr').innerHTML = "First Name is required"
     } else {
-      console.log(firstName)
+      document.getElementById('firstnameErr').innerHTML = ""
+      console.log("First Name : " + firstName)
     }
 
     if (lastName.trim() === "") {
       document.getElementById('lastNameErr').innerHTML = "Last Name is required"
     } else {
-      console.log(lastName)
+      document.getElementById('lastNameErr').innerHTML = ""
+      console.log("Last Name : " + lastName)
     }
 
-    if (photo.trim() === "") {
-      document.getElementById('photoErr').innerHTML = "Profile image is required"
+    if (image.trim() === "") {
+      document.getElementById('imageErr').innerHTML = "Profile image is required"
     } else {
-      console.log(photo)
+      document.getElementById('imageErr').innerHTML = ""
+      console.log("Photo : " + image)
     }
 
-    if (mobileNumber.trim() === "") {
+    if (formattedPhoneNumber.trim() === "") {
       document.getElementById('mobileNumberErr').innerHTML = "Mobile Number is required"
-    } else {
-      console.log(mobileNumber)
+    } else if (formattedPhoneNumber.trim().length == 12) {
+      document.getElementById('mobileNumberErr').innerHTML = ""
+      console.log("Mobile Number : " + formattedPhoneNumber)
+    }
+    else {
+      document.getElementById('mobileNumberErr').innerHTML = "Please put 10 digit mobile number"
     }
 
+
+    var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     if (email.trim() === "") {
       document.getElementById('setEmailErr').innerHTML = "Email Address is required"
+    } else if (mailformat.test(email) == true) {
+      document.getElementById('setEmailErr').innerHTML = ""
+      console.log("Email : " + email)
     } else {
-      console.log(email)
+      document.getElementById('setEmailErr').innerHTML = "Please enter valid email address"
     }
 
     if (gender.trim() === "") {
       document.getElementById('genderErr').innerHTML = "Gender is required"
     } else {
-      console.log(gender)
+      document.getElementById('genderErr').innerHTML = ""
+      console.log("Gender : " + gender)
     }
 
     if (maritalStatus.trim() === "") {
       document.getElementById('maritalStatusErr').innerHTML = "Marital Status is required"
     } else {
-      console.log(maritalStatus)
+      document.getElementById('maritalStatusErr').innerHTML = ""
+      console.log("Marital Status : " + maritalStatus)
     }
 
     if (age.trim() === "") {
-      document.getElementById('ageErr').innerHTML = "age is required"
+      document.getElementById('ageErr').innerHTML = "Age is required"
+    } else {
+      document.getElementById('ageErr').innerHTML = ""
+      console.log("Age : " + age)
+    }
+
+    if (firstName.trim() === "" ||image.trim()===""|| rawPhoneNumber.trim() === "" || lastName.trim() === "" || email.trim() === "" || gender.trim() === "" || maritalStatus.trim() === "" || age.trim() === "") {
+
     } else {
       navigate("/form2")
-      console.log(age)
     }
 
   }
@@ -101,7 +146,6 @@ const Form1 = () => {
                 {/* Last Name is required */}
               </div>
             </span>
-
           </div>
 
           <br />
@@ -111,12 +155,14 @@ const Form1 = () => {
               <label htmlFor="">Photo <b>*</b></label>
             </span>
             <span className='name-input'>
-              <div>
-                <input className='input-feild-photo' type="file"
-                  onChange={(e) => setPhoto(e.target.value)} />
+
+              <div className='input-feild-div' onChange={onImageChange}>
+                {image ? (<img className='input-feild-photo-photo' src={image} />) : (<img className='input-feild-photo-photo' />)}
+                <input type="file" className='input-feild-photo' accept="image/png, image/jpeg" />
               </div>
-              <div id='photoErr' className='required'>
-                {/* Profile image is required */}
+
+              <div id='imageErr' style={{ marginTop: 32 }} className='required'>
+                {/*Profile image is required */}
               </div>
             </span>
           </div>
@@ -129,8 +175,15 @@ const Form1 = () => {
             </span>
             <span className='name-input-full'>
               <div>
-                <input className='input-feild' type="number" placeholder='Mobile Number'
-                  onChange={(e) => setMobileNumber(e.target.value)} />
+                {/* <input className='input-feild' type="number" placeholder='Mobile Number'
+                  onChange={(e) => setMobileNumber(e.target.value)} /> */}
+                <input
+                  type="text"
+                  className='input-feild'
+                  value={formattedPhoneNumber}
+                  onChange={formatPhoneNumber}
+                  placeholder="Enter Phone Number"
+                />
               </div>
               <div id='mobileNumberErr' className='required'>
                 {/* Mobile Number is required */}
@@ -146,7 +199,7 @@ const Form1 = () => {
             </span>
             <span className='name-input-full'>
               <div>
-                <input className='input-feild' type="email" placeholder='Email Address'
+                <input className='input-feild' type="text" id='email' placeholder='Email Address'
                   onChange={(e) => setEmail(e.target.value)} />
               </div>
               <div id='setEmailErr' className='required'>
@@ -244,6 +297,7 @@ const Form1 = () => {
               </div>
             </span>
           </div>
+
           <br />
           <hr />
 
